@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<html lang="pt-br">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Cadeado Countdown</title>
+</head>
+<body>
+		<style type="text/css">
+			body{
+				background-color: #ccc;
+			}
+		</style>
+
+
+		<img src="cadeado_fechado.jpg" width="150px">
+		<h1>Countdown</h1>
+		<input id="buttons" type="button" disabled style="font-size:1.6em" value="Abrir página">
+
+		<script type="text/javascript">
+			var btn = document.getElementById("buttons");
+
+
+			let tempo,tempo_a;
+			tempo = new Date('jan 01, 2023 00:00:00').getTime();
+			let x;
+			x = 0;
+			setInterval(() => {
+			if (x <= 0) {
+				tempo_a = new Date().getTime();
+				let divisor;
+				divisor = tempo - tempo_a;
+				if (divisor <= 0) {
+					divisor = 0;
+				}
+								let anos,meses,dias,horas,minutos,segundos;
+				anos=parseInt(divisor / (365 * 24 * 60 * 60 * 1000));
+				meses=parseInt(divisor / (30 * 24 * 60 * 60 * 1000));
+				dias=parseInt(divisor / (24 * 60 * 60 * 1000));
+				horas=parseInt(divisor % (24 * 60 * 60 * 1000) / (60 * 60 * 1000));
+				minutos=parseInt(divisor % (60 * 60 * 1000) / (60 * 1000));
+				segundos=parseInt(divisor % (60 * 1000) / (1000));
+			 
+					 	document.getElementsByTagName('h1')[0].innerText = anos + ' anos ' + meses + ' meses ' + dias + 'd ' + horas + 'h ' + minutos + 'm ' + segundos + 's ';
+			 
+				if (divisor <= 0) {
+					 
+					btn.disabled = false;
+					btn.onclick = () => {
+						window.open("https://www.google.com/")
+					}
+					document.getElementsByTagName('img')[0].src = "cadeado_aberto.jpg"
+					x += 1;
+				}
+			}
+			})
+
+
+		</script>
+</body>
+</html>
